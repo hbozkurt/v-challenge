@@ -1,11 +1,24 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const productsHandler = require('./handler');
+const elastic = require('./elastic');
 
 const app = new Koa();
 const router = new Router();
 
-router.get('/search/quick', productsHandler);
+router.get('/search/quick', async (ctx, next) => {
+  const { keyword }= ctx.query;
+  ctx.body = await elastic.searchIndex(keyword);
+  ctx.status = 200;
+
+  await next();
+});
+
+elastic.init();
+
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  await next();
+});
 
 // error middleware
 app.use(async (ctx, next) => {
@@ -16,11 +29,6 @@ app.use(async (ctx, next) => {
     ctx.body = err.message;
     ctx.app.emit('error', err, ctx);
   }
-})
-
-app.use(async (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', '*');
-  await next();
 })
 
 app
