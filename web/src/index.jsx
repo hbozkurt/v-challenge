@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import store from './store';
-import './main.scss';
+import './assets/css/main.scss';
 
 // eslint-disable-next-line no-use-before-define
 renderWithHotReload(App);

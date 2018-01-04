@@ -22,6 +22,6 @@ describe('Input component', () => {
   it('should have an icon tag', () => {
     const icon = wrapper.find('i');
     expect(icon.length).toBe(1);
-    expect(icon.hasClass('fa-search')).toBe(true);
+    expect(icon.hasClass('icon-search')).toBe(true);
   });
 });

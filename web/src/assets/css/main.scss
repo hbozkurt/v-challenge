@@ -1,0 +1,119 @@
+@import "./sprites.css";
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+$input-width: 570px;
+
+.flex-center { display: flex; justify-content: center; align-items: center; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100vh;
+  background: #fff;
+
+  #root { height: 100%; }
+}
+.icon { display: inline-block; float: left; }
+
+// ---------------------------------------
+.menu {
+  @extend .flex-center;
+  grid-area: menu;
+  &.mobile { justify-content: flex-start; }
+}
+.logo{
+  @extend .flex-center;
+  grid-area: logo;
+}
+.sign-in{
+  @extend .flex-center;
+  grid-area: sign-in;
+  &.mobile { justify-content: flex-end; }
+}
+.navbar {
+  @extend .flex-center;
+  grid-area: navbar;
+  padding-top: 20px;
+
+  nav { @extend .flex-center;
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #333;
+      padding: 0 10px;
+      font-weight: 600;
+    }
+  }
+}
+
+.header {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "menu logo sign-in"
+    "navbar navbar navbar";
+}
+
+.search-box {
+  @extend .flex-center;
+  position: relative;
+
+  .input {
+    width: $input-width;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #000;
+    background: #fff;
+    &.disabled { background-color: rgb(235, 235, 228); }
+    input {
+      flex: 1;
+      padding: 0 5px;
+      border: none;
+      outline: none;
+      line-height: 40px;
+      font-size: 16px;
+      font-style: italic;
+    }
+  }
+
+  .dropdown {
+    width: $input-width;
+    top: calc(20px + 50%);
+    min-height: 150px;
+    max-height: 240px;
+    position: absolute;
+    z-index: 99;
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+
+    &.loading { justify-content: center; align-items: center; }
+
+    .spinner {
+      display: block;
+      float: left;
+      width: 60px;
+      height: 60px;
+      animation-name: spin;
+      animation-duration: 1.2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+  }
+  .dropdown-item { line-height: 28px; }
+}

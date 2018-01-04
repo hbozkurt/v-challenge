@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 const Dropdown = ({ loading, items }) => {
   const renderItem = i => <span className="dropdown-item" key={i.key}>{i.text}</span>;
-
   return (
     <div className={`dropdown${loading ? ' loading' : ''}`} >
       {loading ?
-        <i className="fa fa-spinner fa-spin fa-3x fa-fw" />
+        <img className="spinner" src="../assets/images/spinner.png" alt="" />
         : items.map(renderItem)
       }
     </div>

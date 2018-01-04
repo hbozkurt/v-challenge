@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Input = props => (
-  <div className="input">
+  <div className={`input${(props.disabled ? ' disabled' : '')}`}>
     <input type="text" {...props} />
-    <i className={`fa fa-search${props.disabled ? ' disabled' : ''}`} />
+    <i className="icon icon-search" />
   </div>
 );
 
