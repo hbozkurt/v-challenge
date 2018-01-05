@@ -1,20 +1,16 @@
-version: '2.1'
-
-services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
-    ports:
-      - "9200:9200"
-  # web:
-  #   build: ./web
-  #   ports:
-  #     - "5000:80"
-  #   links:
-  #     - api:api
-  api:
-    build: ./api
-    ports:
-      - "3000:3000"
-    depends_on:
-      elasticsearch:
-        condition: service_started
+elasticsearch:
+  image: elasticsearch
+  ports:
+    - "9200:9200"
+# web:
+#   build: ./web
+#   ports:
+#     - "5000:80"
+#   links:
+#     - api
+api:
+  build: ./api
+  ports:
+    - "3000:3000"
+  links:
+    - elasticsearch

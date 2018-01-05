@@ -7,13 +7,19 @@ const router = new Router();
 
 router.get('/search/quick', async (ctx, next) => {
   const { keyword }= ctx.query;
-  ctx.body = await elastic.searchIndex(keyword);
+  const resp = await elastic.searchIndex(keyword);
+
+  ctx.body = resp.hits.hits.map(p => p._source);
   ctx.status = 200;
 
   await next();
 });
 
-elastic.init();
+try {
+  elastic.init();
+} catch(e) {
+  console.log("Error occured when initializing elasticsearch: ", e.message);
+}
 
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*');

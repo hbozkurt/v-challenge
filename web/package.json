@@ -5,13 +5,13 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run build-sprites && neutrino build",
-    "start": "neutrino start",
-    "lint": "neutrino lint",
-    "lint-fix": "neutrino lint --fix",
-    "test": "neutrino test",
-    "test-watch": "neutrino test --watch",
-    "test-coverage": "neutrino test --coverage",
-    "build-sprites": "grunt sprite"
+    "start": "./node_modules/neutrino/bin/neutrino.js start",
+    "lint": "./node_modules/neutrino/bin/neutrino.js lint",
+    "lint-fix": "./node_modules/neutrino/bin/neutrino.js lint --fix",
+    "test": "./node_modules/neutrino/bin/neutrino.js test",
+    "test-watch": "./node_modules/neutrino/bin/neutrino.js test --watch",
+    "test-coverage": "./node_modules/neutrino/bin/neutrino.js test --coverage",
+    "build-sprites": "./node_modules/grunt/bin/grunt sprite"
   },
   "dependencies": {
     "axios": "^0.17.1",
