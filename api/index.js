@@ -18,7 +18,7 @@ router.get('/search/quick', async (ctx, next) => {
 try {
   elastic.init();
 } catch(e) {
-  console.log("Error occured when initializing elasticsearch: ", e.message);
+  console.warn("Error occured when initializing elasticsearch: ", e.message);
 }
 
 app.use(async (ctx, next) => {

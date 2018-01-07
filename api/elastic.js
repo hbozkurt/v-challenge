@@ -44,7 +44,7 @@ function createIndex() {
 
 function populateIndex() {
   const body = products
-    .map(p => [{ index:  { _id: p.sku } }, p])
+    .map(p => [{ index: { _id: p.sku }}, p])
     .reduce((x, y) => x.concat(y));
 
   return elasticClient.bulk({
@@ -59,10 +59,10 @@ function searchIndex(keyword) {
     query: {
       bool: {
         must: {
-          "multi_match": {
-            "query": keyword,
-            "fields": ["name", "description", "sku", "ediRef"],
-            "fuzziness" : "AUTO"
+          multi_match: {
+            query: keyword,
+            fields: ["name", "description", "sku", "ediRef"],
+            fuzziness : "AUTO"
           }
         },
         should: [

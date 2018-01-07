@@ -2,15 +2,16 @@ elasticsearch:
   image: elasticsearch
   ports:
     - "9200:9200"
-# web:
-#   build: ./web
-#   ports:
-#     - "5000:80"
-#   links:
-#     - api
+    - "9300:9300"
 api:
   build: ./api
   ports:
     - "3000:3000"
   links:
     - elasticsearch
+web:
+  build: ./web
+  ports:
+    - "5000:80"
+  links:
+    - api

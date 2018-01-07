@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ErrorBoundary extends React.Component {
-  defaultProps = {
-    children: PropTypes.object.isRequired,
-  }
-
   state = { hasError: false };
 
   componentDidCatch() {
@@ -14,10 +10,14 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return <h3>Opps! Something went wrong when fetching search result.</h3>;
+      return <h3 className="error">Opps! Something went wrong when getting search results.</h3>;
     }
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default ErrorBoundary;

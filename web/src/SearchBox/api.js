@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-function getSearchFn() {
+function createSearchApi() {
   const apiBaseUrl = 'http://localhost:3000';
   let source = null;
 
-  return function search(keyword) {
+  function search(keyword) {
     if (source) {
       source.cancel();
     }
@@ -22,9 +22,9 @@ function getSearchFn() {
           throw err;
         }
       });
-  };
+  }
+
+  return { search };
 }
 
-const Api = { search: getSearchFn() };
-
-export default Api;
+export default createSearchApi();

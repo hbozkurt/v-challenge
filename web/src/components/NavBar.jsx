@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const NavBar = ({ items }) => (
   <nav>
-    {items.map(i => <a href={`/${i}`}>{i}</a>)}
+    {items.map(i => <a href={`/${i}`} key={i}>{i}</a>)}
   </nav>
 );
 

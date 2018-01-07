@@ -48,8 +48,10 @@ export class SearchBox extends Component {
   }
 }
 
+const getViewFields = item => ({ key: item.sku, text: item.name });
+
 const mapStateToProps = state => ({
-  items: state.searchBox.items.map(i => ({ key: i.sku, text: i.name })),
+  items: state.searchBox.items.map(getViewFields),
   loading: state.searchBox.loading,
   showDropdown: (state.searchBox.loading || state.searchBox.items.length > 0),
 });

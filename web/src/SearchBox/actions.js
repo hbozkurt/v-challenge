@@ -15,7 +15,7 @@ export function* fetchSearchResult(keyword) {
   }
 }
 
-// this action handles search keyword changes
+// this action is dispatched by saga middleware after KEWYWORD_CHANGED action
 // if the keyword length more than 2, it dispatches SEARCH_REQUESTED action to render a loading icon
 // and make an api request to fetch search result
 // if the keyword length is less than 3, it cancels search request

@@ -9,26 +9,32 @@ module.exports = {
         }
       }
     ],
-    ['@neutrinojs/style-loader', {
-      test: /\.scss$/,
-      loaders: [
-        {
-          loader: "sass-loader",
-          useId: "sass",
-        }
-      ]
-    }],
-    ['@neutrinojs/airbnb', {
-      eslint: {
-        globals: ['process', 'window', 'document']
+    [
+      '@neutrinojs/style-loader', {
+        test: /\.scss$/,
+        loaders: [
+          {
+            loader: "sass-loader",
+            useId: "sass",
+          }
+        ]
       }
-    }],
-    ['@neutrinojs/jest', {
-      setupTestFrameworkScriptFile: './test/test-setup.js',
-      setupFiles: [
-        './test/shim.js'
-      ]
-    }]
+    ],
+    [
+      '@neutrinojs/airbnb', {
+        eslint: {
+          globals: ['process', 'window', 'document']
+        }
+      }
+    ],
+    [
+      '@neutrinojs/jest', {
+        setupTestFrameworkScriptFile: './test/test-setup.js',
+        setupFiles: [
+          './test/shim.js'
+        ]
+      }
+    ]
   ],
   env: {
     NODE_ENV: {
