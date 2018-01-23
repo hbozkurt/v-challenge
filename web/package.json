@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "lodash.debounce": "^4.0.8",
     "nuka-carousel": "^3.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@neutrinojs/airbnb": "^8.0.14",
+    "@neutrinojs/font-loader": "^8.0.18",
     "@neutrinojs/jest": "^8.0.14",
     "@neutrinojs/minify": "^8.0.14",
     "@neutrinojs/react": "^8.0.14",

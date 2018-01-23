@@ -21,6 +21,14 @@ module.exports = {
       }
     ],
     [
+      '@neutrinojs/font-loader', {
+        limit: '10000',
+        woff: {},
+        ttf: {},
+        eot: {}
+      }
+    ],
+    [
       '@neutrinojs/airbnb', {
         eslint: {
           globals: ['process', 'window', 'document']

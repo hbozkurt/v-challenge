@@ -1,3 +1,4 @@
+@import "../fonts/index.css";
 @import "./sprites.css";
 
 @keyframes spin {
@@ -37,6 +38,7 @@ body {
 }
 .navbar {
   @extend .flex-center;
+  font-family: Roboto, sans-serif;
   grid-area: navbar;
   padding-top: 20px;
 

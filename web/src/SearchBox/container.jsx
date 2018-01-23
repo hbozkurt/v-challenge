@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import debounce from 'lodash.debounce';
 import { Input, Dropdown } from '../components';
 import * as actions from './actions';
 
@@ -23,10 +24,9 @@ export class SearchBox extends Component {
     onChange: () => {},
   }
 
-  handleChange = (e) => {
-    const text = e.target.value.toLocaleLowerCase();
+  handleChange = debounce((text) => {
     this.props.onChange(text);
-  }
+  }, 250)
 
   render() {
     return (
@@ -34,7 +34,7 @@ export class SearchBox extends Component {
         <Input
           disabled={this.props.disabled}
           placeholder={PLACEHOLDER}
-          onChange={this.handleChange}
+          onChange={e => this.handleChange(e.target.value.toLowerCase())}
         />
 
         {this.props.showDropdown && !this.props.disabled &&
