@@ -4,20 +4,19 @@ const products = require('./products');
 const indexName = 'products';
 const typeName = 'chair'
 
-const elasticClient = new elasticsearch.Client({
+const client = new elasticsearch.Client({
   host: 'elasticsearch:9200',
   apiVersion: '5.6',
-  log: 'trace',
 });
 
 function indexExists() {
-  return elasticClient.indices.exists({
+  return client.indices.exists({
     index: indexName,
   });
 }
 
 function deleteIndex() {
-  return elasticClient.indices.delete({
+  return client.indices.delete({
     index: indexName
   });
 }
@@ -36,7 +35,7 @@ function createIndex() {
       }
     }
   };
-  return elasticClient.indices.create({
+  return client.indices.create({
     index: indexName,
     body: body
   });
@@ -47,7 +46,7 @@ function populateIndex() {
     .map(p => [{ index: { _id: p.sku }}, p])
     .reduce((x, y) => x.concat(y));
 
-  return elasticClient.bulk({
+  return client.bulk({
     index: indexName,
     type: typeName,
     body: body
@@ -72,14 +71,27 @@ function searchIndex(keyword) {
     }
   };
 
-  return elasticClient.search({
+  return client.search({
     index: indexName,
     type: typeName,
     body: body
   });
 }
 
+function ping() {
+  return client.ping({
+    requestTimeout: 10000
+  });
+}
+
 async function init() {
+  try {
+    await ping();
+  } catch (e) {
+    console.log('elasticsearch is down...');
+    return;
+  }
+
   if (await indexExists()) {
     await deleteIndex();
   }

@@ -4,14 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "concurrently -k \"npm run start:api\" \"npm run start:search\"",
+    "start:api": "node index.js",
+    "start:search": "node search.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^3.5.1",
     "elasticsearch": "^14.0.0",
     "koa": "^2.4.1",
-    "koa-router": "^7.3.0"
+    "koa-router": "^7.3.0",
+    "microservice-kit": "^0.4.1"
   }
 }
