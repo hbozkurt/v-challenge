@@ -3,7 +3,7 @@ FROM node:8-wheezy
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install --no-bin-links
+RUN npm install
 COPY . .
 EXPOSE 3000
 CMD [ "npm", "start" ]

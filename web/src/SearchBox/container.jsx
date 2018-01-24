@@ -24,9 +24,7 @@ export class SearchBox extends Component {
     onChange: () => {},
   }
 
-  handleChange = debounce((text) => {
-    this.props.onChange(text);
-  }, 250)
+  handleChange = debounce(this.props.onChange, 200)
 
   render() {
     return (
