@@ -28,6 +28,8 @@ const microserviceKit = new MicroserviceKit({
   }
 });
 
+const sortByInStock = (x, y) => x.isInStock === y.isInStock ? 0 : (x.isInStock ? -1 : 1)
+
 async function init() {
   await elastic.init();
   await microserviceKit.init();
@@ -37,7 +39,7 @@ async function init() {
     const { keyword } = data;
       const result = await elastic.searchIndex(keyword); // TODO error check
 
-      done(null, result);
+      done(null, result.hits.hits.map(p => p._source).sort(sortByInStock));
     });
 }
 

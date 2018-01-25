@@ -33,8 +33,7 @@ async function search(keyword) {
   const coreQueue = microserviceKit.amqpKit.getQueue('core');
   let result;
   try {
-    const resp = await coreQueue.sendEvent('search.job', { keyword }, { persistent: true });
-    result = resp.hits.hits.map(p => p._source);
+    result = await coreQueue.sendEvent('search.job', { keyword }, { persistent: true });
   } catch (e) {
     console.log('got error when searching: ', e);
     result = [];

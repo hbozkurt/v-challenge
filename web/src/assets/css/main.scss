@@ -34,13 +34,18 @@ body {
 .sign-in{
   @extend .flex-center;
   grid-area: sign-in;
+  font-family: 'Helvetica', sans-serif;
   &.mobile { justify-content: flex-end; }
 }
 .navbar {
   @extend .flex-center;
-  font-family: Roboto, sans-serif;
   grid-area: navbar;
+  font-family: 'RopaSans', sans-serif;
   padding-top: 20px;
+  
+  &.mobile { 
+    font-family: 'Helvetica', sans-serif;
+  }
 
   nav { @extend .flex-center;
     a {

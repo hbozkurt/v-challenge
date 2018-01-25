@@ -19,7 +19,7 @@ const Header = ({ isMobile }) => (
         : <span>Sing In/Register | Stores/Stockists | Your Bag</span>
       }
     </div>
-    <div className="navbar">
+    <div className={`navbar${(isMobile ? ' mobile' : '')}`}>
       { isMobile ?
         <span>Sing In/Register | Stores</span>
         : <NavBar items={navItems} />
